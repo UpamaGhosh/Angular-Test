@@ -1,0 +1,25 @@
+﻿<div class="col-md-6 offset-md-3 mt-5">
+    
+    <div >
+        <h2 style="padding: 10%;">Welcome to Dunder-Mifflin</h2>
+        <h6 >Welcome to the Dunder-Mifflin internal network.    Please enter your username to view your posts and comments</h6>
+        <div >
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <div *ngIf="submitted && f.username.errors" style="color: #dc3545;">
+                        <div *ngIf="f.username.errors.required">Invalid Email</div>
+                        <div *ngIf="f.username.errors.email">Email must be a valid email address</div>
+                    </div>
+                    <input type="text" placeholder="Email Address" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                    
+                </div>
+                
+                <button [disabled]="loading || f.username.errors.email" class="btn btn-primary" style="width: 100%;">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    Login
+                </button>
+                <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+            </form>
+        </div>
+    </div>
+</div>
